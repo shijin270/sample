@@ -1,0 +1,56 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+	{#background-color:  #00b300;#}
+	background-color:  #8e24aa;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>View Student Details</h2>
+
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Middle Name</th>
+    <th>Last Name</th>
+    <th>Contact Details</th>
+    <th>DOB</th>
+    <th>Image</th>
+
+  </tr>
+    {% for x in obval %}
+  <tr>
+    <td>{{ x.first_name}}</td>
+    <td>{{ x.middle_name }}</td>
+    <td>{{ x.last_name }}</td>
+    <td>{{ x.phone_number }}</td>
+    <td>{{ x.dob }}</td>
+    <td><img src="/static/{{ x.image }}" width="80" height="100"></td>
+  </tr>
+{% endfor %}
+
+
+
+</table>
+
+</body>
+{% endblock %}

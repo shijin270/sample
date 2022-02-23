@@ -1,0 +1,107 @@
+{% extends 'temp/student.html' %}
+{% block base %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+.container {
+    padding: 50px;
+  background-color: lightblue;
+}
+
+input[type=text], input[type=password], textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: orange;
+  outline: none;
+}
+ div {
+            padding: 10px 0;
+         }
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.registerbtn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+  <div class="container">
+  <center>  <h1> Update Profile</h1> </center>
+  <hr>
+  <label> Firstname </label>
+      {% for x in obval %}
+
+<input type="text" name="txt_firstname" placeholder= "Firstname"  value="{{ x.first_name }}" size="15" required />
+<label> Middlename: </label>
+<input type="text" name="txt_middlename" placeholder="Middlename" value="{{ x.middle_name }}" size="15" required />
+<label> Lastname: </label>
+<input type="text" name="txt_lastname" placeholder="Lastname" value="{{ x.last_name }}" size="15"required />
+
+<div>
+<label>
+DOB :
+</label><br>
+<input type="text"  name="dob" value="{{ x.dob }}" readonly>
+
+
+</div>
+<div>
+<label>
+Upload Image :
+</label><br>
+<input type="file"  name="file" required>
+
+
+</div>
+<label>
+Phone :
+</label>
+<input type="text" name="country code" placeholder="Country Code"  value="+91" size="2"/>
+<input type="text" name="txt_phone" placeholder="phone no." value="{{ x.phone_number }}" size="10" required >
+
+
+
+
+
+    <label for="psw"><b>Password</b></label>
+          {% for i in oval %}
+    <input type="text" placeholder="Enter Password" name="txt_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" value="{{ i.password  }}" required>
+         {% endfor %}
+{% endfor %}
+
+    <button type="submit" name="btn_register" class="registerbtn">Register</button>
+  </div>
+    {% if msg %}
+    <script>
+        alert("{{ msg }}")
+    </script>
+{% endif %}
+
+
+</form>
+</body>
+{% endblock %}

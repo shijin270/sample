@@ -1,0 +1,58 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+	background-color:  #8e24aa;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>View Mark Details</h2>
+
+<table>
+  <tr>
+    <th>Assignment</th>
+    <th>Series Test</th>
+    <th>Attendance</th>
+    <th>Total Mark</th>
+      <th></th>
+
+
+  </tr>
+    {% for x in obval %}
+  <tr>
+    <td>{{ x.assignment}}</td>
+    <td>{{ x.series_test }}</td>
+    <td>{{ x.attendance }}</td>
+    <td>{{ x.total }}</td>
+
+      <td>
+          <a href="{% url 'edit_mark' idd=x.m_id %}" class="btn btn-primary">Edit</a>
+      </td>
+    <td></td>
+  </tr>
+{% endfor %}
+
+
+
+</table>
+
+</body>
+{% endblock %}
